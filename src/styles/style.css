@@ -1,0 +1,129 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+  }
+  
+  .App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .App-title {
+    font-size: 1.5em;
+  }
+  
+  .App-intro {
+    font-size: large;
+  }
+  
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .chat-container {
+    min-height: 100vh;
+}
+
+.chat-header {
+    overflow: auto;
+}
+
+.chat-header-left {
+    padding: 0 20px;
+    float: left;
+}
+
+.chat-header-left .user-name {
+    padding-left: 15px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: larger
+}
+
+.chat-header-right {
+    padding: 0 20px;
+    float: right;
+    background-color: #f7f7f7;
+}
+
+.chat-header-right .current-user-name {
+    display: inline-block;
+    padding: 0 15px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: right;
+    line-height: 64px;
+}
+
+.chat-header-right .current-user-name .user-name {
+    line-height: 40px;
+    font-size: medium;
+}
+
+.chat-header-right .current-user-name .subtitle {
+    line-height: 24px;
+    font-size: smaller;
+    font-style: italic;
+    text-align: right;
+}
+
+.chat-slider {
+    background-color: #fff;
+    border-right: solid 1px #eee;;
+}
+
+.chat-slider-top {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.chat-frame-intro {
+    width: 600px;
+    text-align: center;
+    margin: 10% auto;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #aaa;
+}
+
+.chat-frame-intro .title {
+    font-size: xx-large;
+}
+
+.container {
+    margin: 100px auto;
+    width: 400px;
+    padding: 50px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.container > * {
+    margin: 5px;
+}
+
+.btn-login {
+    width: 100%;
+}
+
+.user-item {
+    line-height: 40px;
+    height: 40px;
+    margin: 4px 0;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.user-item:hover {
+    background-color: aliceblue;
+    color: #096dd9;
+}
+
+.user-item > .anticon {
+    margin-right: 10px;
+}
