@@ -6,10 +6,10 @@ import { Avatar } from 'antd';
 class UserHeaderName extends Component {
     render() {
         return (
-                    <div className='chat-header-left'>
-                        <Avatar size='large' style={{ backgroundColor: '#87d068' }} icon="user" />
-                        <span className='user-name'>Tuan. Nguyen Le Hoang</span>
-                    </div>
+            <div className='chat-header-left'>
+                <Avatar size='large' style={{ backgroundColor: '#87d068' }} icon={this.props.group == 'true' ? 'profile' : 'user'} />
+                <span className='user-name'>{this.props.name}</span>
+            </div>
         );
     }
 }

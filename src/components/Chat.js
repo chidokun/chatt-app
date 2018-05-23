@@ -3,7 +3,7 @@ import { Layout, Menu, Icon } from 'antd';
 import '../styles/style.css';
 import { Button, Input, Avatar } from 'antd';
 import UserItem from './UserItem';
-import UserList from './UserList';
+import SidebarContainer from '../containers/SidebarContainer';
 import ChatContent from './ChatContent';
 import UserHeaderName from './UserHeaderName';
 import NewConversation from './NewConversation';
@@ -16,21 +16,11 @@ class Chat extends Component {
     render() {
         return (
             <Layout className='chat-container'>
-                <Sider className='chat-slider'
-                    breakpoint="md"
-                    collapsedWidth="0"
-                    onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
-                >
-                <div className='chat-slider-top'>
-                    <div className='logo'></div>
-                    <NewConversation></NewConversation>
-                </div>
-                <UserList />             
-                </Sider>
+                <SidebarContainer />
                 <Layout>
                 <Header style={{ background: '#fff', padding: 0 }}>
                 <div className='chat-header'>
-                    <UserHeaderName />
+                    <UserHeaderName name='tuannlh' group='true' />
                     <UserHeaderControlContainer />
                 </div>
                 </Header>

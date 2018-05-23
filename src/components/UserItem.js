@@ -9,10 +9,10 @@ class UserItem extends Component {
 
     render() {
         return (  
-            <li key={this.props.name}>
-                <Icon type="user" style={this.props.online == 'true' ? {color:'#1DA57A'} : {}} />
+            <div className="user-item" key={this.props.name}>
+                <Icon type={this.props.group == 'true' ? 'profile' : 'user'}/>
                 <span className="nav-text">{this.props.name}</span>
-            </li>
+            </div>
         );
     }
 }

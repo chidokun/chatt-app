@@ -1,21 +1,17 @@
 import { Actions } from '../constants';
 
-export const createChannel = (data) => ({
-    type: Actions.CREATE_CHANNEL, data
+export const createChannel = (info) => ({
+    type: Actions.CREATE_CHANNEL, info
 });
 
-export const joinChannel = (data) => ({
-    type: Actions.JOIN_CHANNEL, data
+export const exitChannel = (name) => ({
+    type: Actions.EXIT_CHANNEL, name
 });
 
-export const exitChannel = (data) => ({
-    type: Actions.EXIT_CHANNEL, data
-});
-
-export const chatChannel = (data) => ({
+export const chatChannel = (data) => ({ //chua xu ly
     type: Actions.CHAT_CHANNEL, data
 });
 
-export const loadChannelList = (data) => ({
-    type: Actions.LOAD_CHANNEL_LIST, data
+export const loadChannelList = (newList) => ({
+    type: Actions.LOAD_CHANNEL_LIST, newList
 });
