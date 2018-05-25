@@ -9,8 +9,8 @@ const channel = (state = [], action) => {
             return state;
         case Actions.CHAT_CHANNEL: //chua xu ly
             return null;
-        case Actions.LOAD_CHANNEL:
-            return action.newList;
+        case Actions.LOAD_CHANNEL_LIST:
+            return action.listChannel;
         default:
             return state;
     }

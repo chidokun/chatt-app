@@ -7,7 +7,7 @@ const conversation = (state = [], action) => {
         case Actions.CHAT_CONVERSATION:
             return state;
         case Actions.LOAD_CONVERSATION_LIST:
-            return state;
+            return action.listConversation;
         default:
             return state;
     }

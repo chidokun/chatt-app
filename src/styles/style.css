@@ -98,7 +98,7 @@
 .container {
     margin: 100px auto;
     width: 400px;
-    padding: 50px;
+    padding: 25px 50px 50px 50px;
     border: 1px solid #eee;
     border-radius: 5px;
 }
@@ -126,4 +126,34 @@
 
 .user-item > .anticon {
     margin-right: 10px;
+}
+
+.chat-item {
+    margin: 24px 50px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: auto;
+}
+
+.chat-item-name {
+    padding: 2px;
+    font-style: italic;
+    color: #aaa;
+}
+
+.chat-item-message {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 500px;
+}
+
+.right > .chat-item-name {
+    float: right;
+    clear: both;
+}
+
+.right > .chat-item-message {
+    float: right;
+    clear: both;
+    background-color: #d9e6ef;
 }

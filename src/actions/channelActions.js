@@ -12,6 +12,6 @@ export const chatChannel = (data) => ({ //chua xu ly
     type: Actions.CHAT_CHANNEL, data
 });
 
-export const loadChannelList = (newList) => ({
-    type: Actions.LOAD_CHANNEL_LIST, newList
+export const loadChannelList = (listChannel) => ({
+    type: Actions.LOAD_CHANNEL_LIST, listChannel
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Button, Input, Avatar, notification } from 'antd';
+import { Layout, Button, Avatar, notification } from 'antd';
 import '../styles/style.css';
 const { Header } = Layout;
 
@@ -21,7 +21,7 @@ class ChatHeader extends Component {
             <Header style={{ background: '#fff', padding: 0 }}>
             <div className='chat-header'>
                 <div className='chat-header-left'>
-                    <Avatar size='large' style={{ backgroundColor: '#87d068' }} icon={currentChat.type == 'channel' ? 'profile' : 'user' } />
+                    <Avatar size='large' style={{ backgroundColor: '#87d068' }} icon={currentChat.type === 'channel' ? 'profile' : 'user' } />
                     <span className='user-name'>{
                         currentChat.name.length > 0 
                         ? currentChat.name 

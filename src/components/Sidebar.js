@@ -1,24 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Button, Input } from 'antd';
-import UserItem from './UserItem';
+import { Layout, Menu } from 'antd';
+import UserItemContainer from '../containers/UserItemContainer';
 import NewConversationContainer from '../containers/NewConversationContainer';
-import { $ } from '../utils/api';
 import '../styles/style.css';
 const { Sider } = Layout;
 
 class Sidebar extends Component {
-    constructor() {
-        super();
-        this.handleItemClick = this.handleItemClick.bind(this);
-    }
-
-    handleItemClick(e) {
-        var type = e.group ? 'channel' : 'user';
-        var id = e.id;
-        var name = e.name;
-        this.props.changeCurrentChat({ type, id, name });
-    }
-
     render() {
         const { channel, conversation } = this.props;
         return (
@@ -32,10 +19,10 @@ class Sidebar extends Component {
             </div>
             <Menu theme="light" mode="inline">
             { channel.map( ({channel, latestMsgId, currMsgId}) => 
-                <UserItem name={channel} group='true' id={channel} numNewMsg={latestMsgId - currMsgId} />
+                <UserItemContainer name={channel} group={true} id={channel} numNewMsg={latestMsgId - currMsgId} />
             )}
             { conversation.map( ({conId, user, latestMsgId, currMsgId}) => 
-                <UserItem name={user} group='true' id={conId} numNewMsg={latestMsgId - currMsgId} />
+                <UserItemContainer name={user} group={false} id={conId} numNewMsg={latestMsgId - currMsgId} />
             )}
             </Menu>           
         </Sider>

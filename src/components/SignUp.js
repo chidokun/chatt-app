@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, notification } from 'antd';
+import logo from '../styles/logo.png';
 import { $ } from '../utils/api';
 import '../styles/style.css';
 
@@ -43,6 +44,9 @@ class SignUpForm extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
         <Form onSubmit={this.handleSignUp} className="login-form container">
+            <FormItem style={{ textAlign: 'center'}}>
+                <img src={logo} alt=''/>
+            </FormItem>
             <FormItem>
             {getFieldDecorator('userName', {
                 rules: [{ required: true, message: 'Please input your username!' }],
