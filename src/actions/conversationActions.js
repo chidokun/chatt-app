@@ -1,7 +1,7 @@
 import { Actions } from '../constants';
 
-export const createConversation = (data) => ({
-    type: Actions.CREATE_CONVERSATION, data
+export const createConversation = (info) => ({
+    type: Actions.CREATE_CONVERSATION, info
 });
 
 export const chatConversation = (content) => ({

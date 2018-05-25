@@ -5,9 +5,8 @@ import { Button, Input, Avatar } from 'antd';
 import UserItem from './UserItem';
 import SidebarContainer from '../containers/SidebarContainer';
 import ChatContent from './ChatContent';
-import UserHeaderName from './UserHeaderName';
+import ChatHeaderContainer from '../containers/ChatHeaderContainer';
 import NewConversation from './NewConversation';
-import UserHeaderControlContainer from '../containers/UserHeaderControlContainer';
 const Send = Input.Search;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -18,12 +17,7 @@ class Chat extends Component {
             <Layout className='chat-container'>
                 <SidebarContainer />
                 <Layout>
-                <Header style={{ background: '#fff', padding: 0 }}>
-                <div className='chat-header'>
-                    <UserHeaderName name='tuannlh' group='true' />
-                    <UserHeaderControlContainer />
-                </div>
-                </Header>
+                <ChatHeaderContainer />
                 <ChatContent />
                 <Footer>
                     <Send placeholder='Enter your message' enterButton="Send" size='large' />

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { createConversation, loadConversationList } from '../actions/conversationActions';
-import { createChannel, loadChannelList, exitChannel } from '../actions/channelActions';
-
+import { exitChannel } from '../actions/channelActions';
+import { changeCurrentChat } from '../actions/currentChatActions';
+import { loadChannelMessage, loadConversationMessage } from '../actions/messageActions';
 import Sidebar from '../components/Sidebar';
 
 const mapStateToProps = state => ({
@@ -11,11 +11,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    createConversation: (name) => dispatch(createConversation(name)),
-    loadConversationList: (newList) => dispatch(loadConversationList(newList)),
-    createChannel: (name) => dispatch(createChannel(name)),
-    loadChannelList: (newList) => dispatch(loadChannelList(newList)),
     exitChannel: (name) => dispatch(exitChannel(name)),
+    changeCurrentChat: (currChatObj) => dispatch(changeCurrentChat(currChatObj)),
+    loadChannelMessage: (listChatObj) => dispatch(loadChannelMessage(listChatObj)),
+    loadConversationMessage: (listChatObj) => dispatch(loadConversationMessage(listChatObj))
 });
 
 export default connect(

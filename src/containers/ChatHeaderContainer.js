@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import { logOut } from '../actions/signActions';
 import { pageLogin } from '../actions/pageActions';
-import UserHeaderControl from '../components/UserHeaderControl';
+import ChatHeader from '../components/ChatHeader';
 
 const mapStateToProps = state => ({
-  sign: state.sign
+    sign: state.sign,
+    currentChat: state.currentChat
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  pageLogin: () => dispatch(pageLogin()),
-  logOut: () => dispatch(logOut())
+    pageLogin: () => dispatch(pageLogin()),
+    logOut: () => dispatch(logOut())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserHeaderControl);
+)(ChatHeader);

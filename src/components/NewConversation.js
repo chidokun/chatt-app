@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Button, Input, Modal } from 'antd';
+import { Icon, Button, Input, Modal, notification } from 'antd';
 import { $ } from '../utils/api';
 
 class NewConversation extends Component {
@@ -28,8 +28,29 @@ class NewConversation extends Component {
                 token: this.props.sign.token
             }).then((res) => {
                 console.log(res);
+                if (res.body.status === 200) {
+                    this.props.createConversation(res.body.conId);
+                    notification.open({
+                        message: 'Successfully',
+                        description: res.body.message
+                    });
+                } else {
+                    notification.open({
+                        message: 'Unsuccessfully',
+                        description: res.body.message
+                    });
+                }
+                this.setState({
+                    visible: false,
+                });
             }).catch((err) => {
-                console.log(err);
+                notification.open({
+                    message: 'Unsuccessfully',
+                    description: err.message
+                });
+                this.setState({
+                    visible: false,
+                });
             });
         }
     }
