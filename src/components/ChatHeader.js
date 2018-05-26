@@ -13,6 +13,12 @@ class ChatHeader extends Component {
             description: 'Please login again'
         });
         this.props.pageLogin();
+        this.props.loadMessage([]);
+        this.props.loadConversationList([]);
+        this.props.loadChannelList([]);
+        this.props.changeCurrentChat({type: '', id: '', name: ''});
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
     }
 
     render() {

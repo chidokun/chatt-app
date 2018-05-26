@@ -7,14 +7,14 @@ import SignUpContainer from '../containers/SignUpContainer';
 class App extends Component {
     render() {
         const { page } = this.props;
-        switch(page) {
+        switch (page) {
             case Actions.PAGE_SIGNUP:
                 return <SignUpContainer />;
             case Actions.PAGE_CHAT:
                 return <ChatContainer />;
             default:
                 return <LoginContainer />;
-        } 
+        }          
     }
 }
 

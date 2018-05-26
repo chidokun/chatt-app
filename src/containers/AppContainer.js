@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { createConversation, chatConversation, loadConversationList } from '../actions/conversationActions';
-import { pageSignUp, pageLogin } from '../actions/pageActions';
+import { pageSignUp, pageLogin, pageChat } from '../actions/pageActions';
+import { login } from '../actions/signActions';
 
 import App from '../components/App';
 
@@ -10,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    pageSignUp: () => dispatch(pageSignUp()),
+    pageChat: () => dispatch(pageChat()),
+    login: (user, token) => dispatch(login(user, token))
 });
 
 export default connect(

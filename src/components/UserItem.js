@@ -15,30 +15,41 @@ class UserItem extends Component {
         var name = this.props.name;
         this.props.changeCurrentChat({ type, id, name });
 
+        var successLoadMsg = (res) => {
+            console.log(res);
+            if (res.body.status === 200) {
+                this.props.loadMessage(res.body.list);
+            }
+        }
+        var failureLoadMsg = (err) => {
+            console.log(err);
+            this.props.loadMessage([]);
+        }
+        var successUpdateStatus = (res) => {
+            console.log(res);
+        }
+        var failureUpdateStatus = (err) => {
+            console.log(err);
+        }
+
         if (type === 'channel') {
             $.get('/channels/' + id).query({
                 user: this.props.sign.user,
                 token: this.props.sign.token
-            }).then((res) => {
-                console.log(res);
-                if (res.body.status === 200) {
-                  this.props.loadChannelMessage(res.body.list);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+            }).then(successLoadMsg).catch(failureLoadMsg);
+            $.put('/channels/' + id).query({
+                user: this.props.sign.user,
+                token: this.props.sign.token
+            }).then(successUpdateStatus).catch(failureUpdateStatus);
         } else if (type === 'user') {
             $.get('/conversations/' + id).query({
                 user: this.props.sign.user,
                 token: this.props.sign.token
-            }).then((res) => {
-                console.log(res);
-                if (res.body.status === 200) {
-                  this.props.loadConversationMessage(res.body.list);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+            }).then(successLoadMsg).catch(failureLoadMsg);
+            $.put('/conversations/' + id).query({
+                user: this.props.sign.user,
+                token: this.props.sign.token
+            }).then(successUpdateStatus).catch(failureUpdateStatus);
         }
     }
 

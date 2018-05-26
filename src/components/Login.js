@@ -6,6 +6,15 @@ import { $ } from '../utils/api';
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
+    componentDidMount() {
+        var user = localStorage.getItem('user');
+        var token = localStorage.getItem('token');
+        if (user && token) {
+            this.props.login(user, token); 
+            this.props.pageChat();     
+        } 
+    }
+
     handleLogin = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -17,6 +26,8 @@ class LoginForm extends Component {
                     console.log(res);
                     if (res.body.status === 200) {
                       this.props.login(res.body.user, res.body.token);
+                      localStorage.setItem('user', res.body.user);
+                      localStorage.setItem('token', res.body.token);
                       this.props.pageChat();
                     } else {
                         notification.open({

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { changeCurrentChat } from '../actions/currentChatActions';
-import { loadChannelMessage, loadConversationMessage } from '../actions/messageActions';
+import { loadMessage } from '../actions/messageActions';
 import UserItem from '../components/UserItem';
 
 const mapStateToProps = state => ({ 
@@ -10,8 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
     changeCurrentChat: (currChatObj) => dispatch(changeCurrentChat(currChatObj)),
-    loadChannelMessage: (listChatObj) => dispatch(loadChannelMessage(listChatObj)),
-    loadConversationMessage: (listChatObj) => dispatch(loadConversationMessage(listChatObj))
+    loadMessage: (listChatObj) => dispatch(loadMessage(listChatObj))
 });
 
 export default connect(

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { Layout, Input } from 'antd';
+import { Layout } from 'antd';
 import SidebarContainer from '../containers/SidebarContainer';
 import ChatContentContainer from '../containers/ChatContentContainer';
 import ChatHeaderContainer from '../containers/ChatHeaderContainer';
+import ChatFooterContainer from '../containers/ChatFooterContainer';
 import { $ } from '../utils/api';
 import '../styles/style.css';
-const Send = Input.Search;
-const {  Footer } = Layout;
 
 
 class Chat extends Component {
+    constructor(props) {
+        super(props);
+        this.handleLoadList = this.handleLoadList.bind(this);
+    }
 
     handleLoadList() {
         $.get('/channels').query({
@@ -44,9 +47,7 @@ class Chat extends Component {
                 <Layout style={{height:'100vh'}}>
                     <ChatHeaderContainer />
                     <ChatContentContainer />
-                    <Footer>
-                        <Send placeholder='Enter your message' enterButton="Send" size='large' />
-                    </Footer>
+                    <ChatFooterContainer />
                 </Layout>
             </Layout>
         );
