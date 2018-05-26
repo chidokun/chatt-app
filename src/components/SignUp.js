@@ -7,6 +7,7 @@ import '../styles/style.css';
 const FormItem = Form.Item;
 
 class SignUpForm extends Component {
+    
     handleSignUp = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {

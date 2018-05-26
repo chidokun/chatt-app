@@ -6,6 +6,7 @@ import { $ } from '../utils/api';
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
+    
     componentDidMount() {
         var user = localStorage.getItem('user');
         var token = localStorage.getItem('token');

@@ -3,9 +3,7 @@ import { Actions } from '../constants';
 const conversation = (state = [], action) => {
     switch (action.type) {
         case Actions.CREATE_CONVERSATION:
-            return [ ...state, action.conId];
-        case Actions.CHAT_CONVERSATION:
-            return state;
+            return [ ...state, action.info];
         case Actions.LOAD_CONVERSATION_LIST:
             return action.listConversation;
         default:

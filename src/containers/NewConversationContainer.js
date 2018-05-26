@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    createConversation: (conId) => dispatch(createConversation(conId)),
-    createChannel: (name) => dispatch(createChannel(name)),
+    createConversation: (info) => dispatch(createConversation(info)),
+    createChannel: (info) => dispatch(createChannel(info)),
     changeCurrentChat: (currChatObj) => dispatch(changeCurrentChat(currChatObj))
 });
 

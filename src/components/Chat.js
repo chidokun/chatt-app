@@ -9,34 +9,34 @@ import '../styles/style.css';
 
 
 class Chat extends Component {
+
     constructor(props) {
         super(props);
         this.handleLoadList = this.handleLoadList.bind(this);
     }
 
     handleLoadList() {
+        const { sign, loadChannelList, loadConversationList } = this.props;
+        var failure = (err) => { console.log(err); };
+
         $.get('/channels').query({
-            user: this.props.sign.user,
-            token: this.props.sign.token
+            user: sign.user,
+            token: sign.token
         }).then((res) => {
             console.log(res);
             if (res.body.status === 200) {
-                this.props.loadChannelList(res.body.list);
+                loadChannelList(res.body.list);
             }
-        }).catch((err) => {
-            console.log(err);
-        });
+        }).catch(failure);
         $.get('/conversations').query({
-            user: this.props.sign.user,
-            token: this.props.sign.token
+            user: sign.user,
+            token: sign.token
         }).then((res) => {
             console.log(res);
             if (res.body.status === 200) {
-                this.props.loadConversationList(res.body.list);
+                loadConversationList(res.body.list);
             }
-        }).catch((err) => {
-            console.log(err);
-        });
+        }).catch(failure);
     }
 
     render() {

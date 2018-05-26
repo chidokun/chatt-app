@@ -4,6 +4,7 @@ import { $ } from '../utils/api';
 import '../styles/style.css';
 
 class UserItem extends Component {
+    
     constructor(props) {
         super(props);
         this.handleItemClick = this.handleItemClick.bind(this);

@@ -3,7 +3,6 @@ import { Layout, Button, Avatar, notification } from 'antd';
 import '../styles/style.css';
 const { Header } = Layout;
 
-
 class ChatHeader extends Component {
 
     handleLogOut = (e) => {
@@ -22,7 +21,7 @@ class ChatHeader extends Component {
     }
 
     render() {
-        const {currentChat} = this.props;
+        const { currentChat, sign } = this.props;
         return (
             <Header style={{ background: '#fff', padding: 0 }}>
             <div className='chat-header'>
@@ -36,7 +35,7 @@ class ChatHeader extends Component {
                 </div>
                 <div className='chat-header-right'>
                     <div className='current-user-name'>
-                        <span className='user-name'>{this.props.sign.user}</span>
+                        <span className='user-name'>{sign.user}</span>
                         <span className='subtitle'> (Logged in) </span>
                     </div>
                     <Button icon='logout' type='primary' shape='circle' onClick={this.handleLogOut} />

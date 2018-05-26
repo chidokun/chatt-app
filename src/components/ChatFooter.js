@@ -5,7 +5,6 @@ import '../styles/style.css';
 const Send = Input.Search;
 const {  Footer } = Layout;
 
-
 class ChatFooter extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +22,7 @@ class ChatFooter extends Component {
                     description: res.body.message
                 });
             } else {
-                chatMessage({time: time, user: sign.user, message: e});
+                chatMessage({ time, user: sign.user, message: e});
                 this.ref.input.input.value = '';
             }
         };
@@ -50,7 +49,7 @@ class ChatFooter extends Component {
     }
 
     render() {
-        const {currentChat} = this.props;
+        const { currentChat } = this.props;
         return (
             <Footer>
                 <Send ref={(ref) => this.ref = ref} 
