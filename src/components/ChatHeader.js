@@ -11,10 +11,12 @@ class ChatHeader extends Component {
             message: 'Logout successfully',
             description: 'Please login again'
         });
+        this.props.sign.connection.close();
+        this.props.disconnectSocket();
         this.props.pageLogin();
         this.props.loadMessage([]);
-        this.props.loadConversationList([]);
-        this.props.loadChannelList([]);
+        this.props.loadConversationList({});
+        this.props.loadChannelList({});
         this.props.changeCurrentChat({type: '', id: '', name: ''});
         localStorage.removeItem('user');
         localStorage.removeItem('token');

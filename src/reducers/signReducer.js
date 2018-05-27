@@ -2,7 +2,8 @@ import { Actions } from '../constants';
 
 const initState = {
     user: '',
-    token: ''
+    token: '',
+    connection: null
 }
 
 const sign = (state = initState, action) => {
@@ -16,6 +17,10 @@ const sign = (state = initState, action) => {
         case Actions.LOGOUT:
             console.log(Actions.LOGOUT);
             return { ...state, user: '', token: ''};
+        case Actions.CONNECT:
+            return { ...state, connection: action.connection };
+        case Actions.DISCONNECT:
+            return { ...state, connection: null };
         default:
             return state;
     }

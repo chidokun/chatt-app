@@ -13,6 +13,69 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.handleLoadList = this.handleLoadList.bind(this);
+        this.connectionOpened = this.connectionOpened.bind(this);
+        this.connectionMessage = this.connectionMessage.bind(this);
+    }
+
+    componentDidMount() {
+        const { sign } = this.props;
+        if (sign.connection === null) {
+            this.props.connectSocket(this.createConnection());
+        }
+    }
+
+    createConnection() {
+        const connection = new WebSocket('ws://localhost:10030');
+        connection.onopen = this.connectionOpened;
+        connection.onmessage = this.connectionMessage;
+        connection.onclose = this.connectionClosed;
+        connection.onerror = this.connectionError;
+
+        return connection;
+    }
+
+    connectionOpened(e) {
+        const { sign } = this.props;
+        sign.connection.send(JSON.stringify({
+            type: 'CONNECT',
+            user: sign.user,
+            token: sign.token
+        }));
+    }
+
+    connectionMessage(e) {
+        const { currentChat, chatMessage } = this.props;
+        const data = JSON.parse(e.data);
+        switch (data.type) {
+            case 'RESPONSE':
+                console.log(data.message);
+                break;
+            case 'MESSAGE_CHANNEL':
+                if (currentChat.type === 'channel' 
+                    && currentChat.id === data.channel.channel) {
+                    chatMessage(data.message);
+                } else {
+                    this.props.createChannel(data.channel);
+                }
+                break;
+            case 'MESSAGE_CONVERSATION':
+                if (currentChat.type === 'user' && currentChat.id === data.con.conId) {
+                    chatMessage(data.message);
+                } else {
+                    this.props.createConversation(data.con);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    connectionClosed(e) {
+        console.log('Close connection');
+    }
+
+    connectionError(e) {
+        console.log('Close connection');
     }
 
     handleLoadList() {
@@ -25,7 +88,11 @@ class Chat extends Component {
         }).then((res) => {
             console.log(res);
             if (res.body.status === 200) {
-                loadChannelList(res.body.list);
+                var list = {};
+                for (var i = 0; i < res.body.list.length; i++) {
+                    list[res.body.list[i].channel] = res.body.list[i]
+                }
+                loadChannelList(list);
             }
         }).catch(failure);
         $.get('/conversations').query({
@@ -34,7 +101,11 @@ class Chat extends Component {
         }).then((res) => {
             console.log(res);
             if (res.body.status === 200) {
-                loadConversationList(res.body.list);
+                var list = {};
+                for (var i = 0; i < res.body.list.length; i++) {
+                    list[res.body.list[i].conId] = res.body.list[i]
+                }
+                loadConversationList(list);
             }
         }).catch(failure);
     }

@@ -6,12 +6,12 @@ import { $ } from '../utils/api';
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
-    
+
     componentDidMount() {
         var user = localStorage.getItem('user');
         var token = localStorage.getItem('token');
         if (user && token) {
-            this.props.login(user, token); 
+            this.props.login(user, token);
             this.props.pageChat();     
         } 
     }

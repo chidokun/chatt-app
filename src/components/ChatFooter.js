@@ -14,6 +14,20 @@ class ChatFooter extends Component {
     handleSendMessage(e) {
         const { currentChat, sign, chatMessage } = this.props;
         var time = Date.now();
+        var paramsChannel = {
+            channel: currentChat.id,
+            user: sign.user,
+            time: time,
+            message: e,
+            token: sign.token
+        };
+        var paramsCon = {
+            conId: currentChat.id,
+            user: sign.user,
+            time: time,
+            message: e,
+            token: sign.token
+        }
         var success = (res) => {
             console.log(res);
             if (res.body.status !== 200) {
@@ -21,29 +35,27 @@ class ChatFooter extends Component {
                     message: 'Can\'t send message',
                     description: res.body.message
                 });
-            } else {
-                chatMessage({ time, user: sign.user, message: e});
+            } else {  
+                sign.connection.send(JSON.stringify(
+                    currentChat.type === 'channel' 
+                    ? { type: 'MESSAGE_CHANNEL', params: paramsChannel, token: paramsChannel.token } 
+                    : { type: 'MESSAGE_CONVERSATION', params: paramsCon, token: paramsCon.token }));
+                if (currentChat.name !== sign.user) {
+                    chatMessage({ time, user: sign.user, message: e});
+                }
                 this.ref.input.input.value = '';
             }
         };
         var failure = (err) => { console.log(err) };
         if (e.length > 0) {
             if (currentChat.type === 'channel') {
-                $.post('/channels/' + currentChat.id).query({
-                    channel: currentChat.id,
-                    user: sign.user,
-                    time: time,
-                    message: e,
-                    token: sign.token
-                }).then(success).catch(failure);
+                $.post('/channels/' + currentChat.id)
+                    .query(paramsChannel)
+                    .then(success).catch(failure);
             } else {
-                $.post('/conversations/' + currentChat.id).query({
-                    conId: currentChat.id,
-                    user: sign.user,
-                    time: time,
-                    message: e,
-                    token: sign.token
-                }).then(success).catch(failure);
+                $.post('/conversations/' + currentChat.id)
+                    .query(paramsCon)
+                    .then(success).catch(failure);
             }  
         }
     }

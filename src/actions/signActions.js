@@ -11,3 +11,12 @@ export const logOut = () => ({
 export const signUp = () => ({
     type: Actions.SIGNUP
 });
+
+export const connectSocket = (connection) => ({
+    type: Actions.CONNECT,
+    connection
+});
+
+export const disconnectSocket = () => ({
+    type: Actions.DISCONNECT
+});

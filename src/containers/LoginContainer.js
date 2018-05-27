@@ -4,7 +4,7 @@ import { pageSignUp, pageChat } from '../actions/pageActions';
 import Login from '../components/Login';
 
 const mapStateToProps = state => ({
-    user: state.user
+    sign: state.sign
 })
 
 const mapDispatchToProps = (dispatch) => ({

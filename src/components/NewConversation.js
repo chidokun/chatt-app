@@ -33,7 +33,6 @@ class NewConversation extends Component {
                         message: 'Successfully',
                         description: res.body.message
                     });
-                    this.props.changeCurrentChat({ type: 'channel', id: name.substr(1), name: name.substr(1) });
                     this.input.input.value = '';
                 } else {
                     notification.open({
@@ -61,7 +60,6 @@ class NewConversation extends Component {
                         message: 'Successfully',
                         description: res.body.message
                     });
-                    this.props.changeCurrentChat({ type: 'user', id: res.body.conId, name });
                     this.input.input.value = '';
                 } else {
                     notification.open({
@@ -90,7 +88,7 @@ class NewConversation extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}>
                 <p>Enter name of user or begin with "<b>#</b>" if you want to create new channel</p>
-                <Input ref={(ref) => { this.input = ref; }} placeholder='Enter name' />
+                <Input ref={(ref) => { this.input = ref; }} placeholder='Enter name' onPressEnter={this.handleOk} />
                 </Modal>
             </div>
         );

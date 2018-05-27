@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logOut } from '../actions/signActions';
+import { logOut, disconnectSocket } from '../actions/signActions';
 import { loadConversationList } from '../actions/conversationActions';
 import { loadChannelList } from '../actions/channelActions';
 import { loadMessage } from "../actions/messageActions";
@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
     pageLogin: () => dispatch(pageLogin()),
     logOut: () => dispatch(logOut()),
+    disconnectSocket: () => dispatch(disconnectSocket()),
     loadConversationList: (listConversation) => dispatch(loadConversationList(listConversation)),
     loadChannelList: (listChannel) => dispatch(loadChannelList(listChannel)),
     loadMessage: (listChatObj) => dispatch(loadMessage(listChatObj)),

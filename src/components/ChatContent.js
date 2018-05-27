@@ -5,6 +5,14 @@ import '../styles/style.css';
 const { Content } = Layout;
 
 class ChatContent extends Component {
+
+    componentDidUpdate() {
+        var frame = document.getElementById('chat-content');
+        if (frame) {
+            frame.scrollTop = frame.scrollHeight;
+        }    
+    }
+
     render() {
         const { message, currentChat, sign } = this.props;
         if (message.length === 0) {
@@ -24,7 +32,7 @@ class ChatContent extends Component {
             </Content> );
         } else {
             return ( 
-            <Content style={{overflow:'auto'}}>
+            <Content style={{overflow:'auto'}} ref={(ref) => { this.content = ref}} id='chat-content'>
             { message.map(({msgId, user, time, message}) =>
                 <ChatItem key={msgId} user={user} time={time} msg={message} isMine={user === sign.user} />
             )}
