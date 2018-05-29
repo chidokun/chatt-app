@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Icon, Button, notification } from 'antd';
 import logo from '../styles/logo.png';
+import crypto from 'crypto';
 import { $ } from '../utils/api';
 import '../styles/style.css';
 
@@ -12,9 +13,10 @@ class SignUpForm extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                var passwordHash = crypto.createHash('sha256').update(values.password).digest('base64');
                 $.post('/users').query({
                     user: values.userName,
-                    password: values.password
+                    password: passwordHash
                 }).then((res) => {
                     console.log(res);
                     if (res.body.status === 200) {

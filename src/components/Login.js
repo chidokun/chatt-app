@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, notification } from 'antd';
 import '../styles/style.css';
 import logo from '../styles/logo.png';
+import crypto from 'crypto';
 import { $ } from '../utils/api';
 const FormItem = Form.Item;
 
@@ -20,9 +21,11 @@ class LoginForm extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                var passwordHash = crypto.createHash('sha256').update(values.password).digest('base64');
+                console.log(passwordHash);
                 $.get('/users/login').query({
                     user: values.userName,
-                    password: values.password
+                    password: passwordHash
                 }).then((res) => {
                     console.log(res);
                     if (res.body.status === 200) {
